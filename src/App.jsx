@@ -5,22 +5,13 @@ import AddContact from "./components/AddContact";
 import ContactList from "./components/ContactList";
 
 function App() {
-  const [list, setList] = useState([
-    {
+  const [list, setList] = useState([{
       id: 1,
       firstName: "Emilly",
       lastName: "Almeida",
       email: "emilly@email.com",
       phone: "1234567890"
-    },
-    {
-      id: 2,
-      firstName: "Camilly",
-      lastName: "Almeida",
-      email: "camilly@email.com",
-      phone: "1234567890"
-    }
-  ]);
+    }]);
 
   function onAddContact (firstName, lastName, email, phone){
     const newList = {
