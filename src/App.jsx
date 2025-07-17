@@ -1,10 +1,26 @@
+import { useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import AddContact from "./components/AddContact";
 import ContactList from "./components/ContactList";
 
 function App() {
-  
+  const [list, setList] = useState([
+    {
+      id: 1,
+      nome: "Emilly",
+      sobrenome: "Almeida",
+      email: "emilly@email.com",
+      telefone: "1234567890"
+    },
+    {
+      id: 2,
+      nome: "Camilly",
+      sobrenome: "Almeida",
+      email: "camilly@email.com",
+      telefone: "1234567890"
+    }
+  ]);
 
   return (
     <div className="w-screen bg-slate-500 flex justify-center py-2">
@@ -14,7 +30,9 @@ function App() {
       
       <AddContact />
 
-      <ContactList />
+      <ContactList
+      list={list}
+      />
       
       </div>
     </div>
