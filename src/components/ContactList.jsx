@@ -7,7 +7,7 @@ function ContactList(props){
                     <li key={contato.id} className="flex gap-2">
                     
                     <div>
-                    <p className="bg-slate-500 text-white p-2 rounded-md">{contato.nome}</p>
+                    <p className="bg-slate-500 text-white p-2 rounded-md">{contato.firstName}</p>
                     <p className="bg-slate-500 text-white p-2 rounded-md">{contato.email}</p>
                     </div>
 

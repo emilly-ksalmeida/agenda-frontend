@@ -8,17 +8,17 @@ function App() {
   const [list, setList] = useState([
     {
       id: 1,
-      nome: "Emilly",
-      sobrenome: "Almeida",
+      firstName: "Emilly",
+      lastName: "Almeida",
       email: "emilly@email.com",
-      telefone: "1234567890"
+      phone: "1234567890"
     },
     {
       id: 2,
-      nome: "Camilly",
-      sobrenome: "Almeida",
+      firstName: "Camilly",
+      lastName: "Almeida",
       email: "camilly@email.com",
-      telefone: "1234567890"
+      phone: "1234567890"
     }
   ]);
 
