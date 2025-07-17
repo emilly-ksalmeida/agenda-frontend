@@ -33,6 +33,18 @@ function App() {
     setList([...list, newList]);
   }
 console.log(list);
+
+  function onClickDelete(idContact){
+    const updatedList = list.filter((contact) => {
+      if(contact.id !== idContact){
+        return {...contact};
+      }
+    });
+    setList(updatedList);
+  }
+
+
+
   return (
     <div className="w-screen bg-slate-500 flex justify-center py-2">
       <div className="w-[900px] space-y-4">
@@ -45,6 +57,7 @@ console.log(list);
 
       <ContactList
       list={list}
+      onClickDelete={onClickDelete}
       />
       
       </div>
