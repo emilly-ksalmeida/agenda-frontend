@@ -9,6 +9,9 @@ function ContactList({ list, onClickDelete }){
         const query = new URLSearchParams();
         query.set("firstName", contact.firstName);
         query.set("lastName", contact.lastName);
+        query.set("email", contact.email);
+        query.set("phone", contact.phone);
+        
         navigate(`/contact-details?${query.toString()}`);
     }
 

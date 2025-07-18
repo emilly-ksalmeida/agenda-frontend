@@ -3,9 +3,12 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 function ContactDetails(){
     
     const navigate = useNavigate();
+
     const [searchParams] = useSearchParams();
     const firstName = searchParams.get("firstName");
     const lastName = searchParams.get("lastName");
+    const email = searchParams.get("email");
+    const phone = searchParams.get("phone");
 
     return (
        <div className="h-screen w-screen bg-slate-500 p-6">
@@ -26,8 +29,8 @@ function ContactDetails(){
                 <div className="bg-slate-200 p-4 rounded-md">
                     <p className="text-slate-600">{firstName}</p>
                     <p className="text-slate-600">{lastName}</p>
-                    <p className="text-slate-600">email</p>
-                    <p className="text-slate-600">phone</p>
+                    <p className="text-slate-600">{email}</p>
+                    <p className="text-slate-600">{phone}</p>
                 </div>
             </div>
        </div>
