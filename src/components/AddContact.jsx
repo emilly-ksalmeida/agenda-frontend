@@ -42,6 +42,9 @@ function AddContact({ onAddContact }){
             <button
             className="bg-slate-500 text-white px-4 py-2 rounded-md font-medium"
             onClick={()=>{
+                if(!firstName.trim() || !email.trim() || !phone.trim()){
+                    return alert("Preencha os campos nome, e-mail e telefone.");
+                }
                 onAddContact(firstName, lastName, email, phone);
                 setFirstName("");
                 setLastName("");
