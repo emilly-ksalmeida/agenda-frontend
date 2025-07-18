@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import AddContact from "./components/AddContact";
 import ContactList from "./components/ContactList";
 
 function App() {
-  const [list, setList] = useState([{
-      id: 1,
-      firstName: "Emilly",
-      lastName: "Almeida",
-      email: "emilly@email.com",
-      phone: "1234567890"
-    }]);
+  const [list, setList] = useState(
+    JSON.parse(localStorage.getItem("contactList")) || []
+  );
+
+  useEffect(()=>{
+    localStorage.setItem("contactList", JSON.stringify(list));
+
+  }, [list]);
 
   function onAddContact (firstName, lastName, email, phone){
     const newList = {
