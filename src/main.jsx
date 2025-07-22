@@ -5,6 +5,7 @@ import "./index.css";
 import AppProvider from "./components/AppProvider.jsx";
 import App from "./App.jsx";
 import ContactDetails from "./pages/ContactDetails.jsx";
+import ContactUpdate from "./pages/ContactUpdate.jsx";
 
 const router = createBrowserRouter([
   {
@@ -12,8 +13,12 @@ const router = createBrowserRouter([
     element: <App />
   },
   {
-    path:"/contact-details",
+    path: "/contact-details",
     element: <ContactDetails />
+  },
+  {
+    path: "/update",
+    element: <ContactUpdate />
   }
 ]);
 
