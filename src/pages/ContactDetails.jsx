@@ -5,6 +5,7 @@ function ContactDetails(){
     const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
+    const id = searchParams.get("id");
     const firstName = searchParams.get("firstName");
     const lastName = searchParams.get("lastName");
     const email = searchParams.get("email");
@@ -32,6 +33,15 @@ function ContactDetails(){
                     <p className="text-slate-600">{email}</p>
                     <p className="text-slate-600">{phone}</p>
                 </div>
+                <button
+                className="bg-slate-800 text-slate-100 p-2 rounded-md"
+                onClick={()=> {
+                    const query = new URLSearchParams();
+                    query.set("id", id);
+                    navigate(`/update?${query.toString()}`);
+                }}>
+                    Editar
+                </button>
             </div>
        </div>
     )
