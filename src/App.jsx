@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import NavBar from "./components/NavBar";
 import AddContact from "./components/AddContact";
 import ContactList from "./components/ContactList";
 
 function App() {
-  const [list, setList] = useState(
-    JSON.parse(localStorage.getItem("contactList")) || []
-  );
-
+  
   useEffect(()=>{
     localStorage.setItem("contactList", JSON.stringify(list));
 
@@ -34,8 +31,6 @@ console.log(list);
     });
     setList(updatedList);
   }
-
-
 
   return (
     <div className="w-screen bg-slate-500 flex justify-center py-2">
