@@ -1,15 +1,12 @@
-import { useEffect } from "react";
+import { useContext } from "react";
 import "./App.css";
+import AppContext from "./AppContext.js";
 import NavBar from "./components/NavBar";
 import AddContact from "./components/AddContact";
 import ContactList from "./components/ContactList";
 
 function App() {
-  
-  useEffect(()=>{
-    localStorage.setItem("contactList", JSON.stringify(list));
-
-  }, [list]);
+  const [list, setList] = useContext(AppContext);
 
   function onAddContact (firstName, lastName, email, phone){
     const newList = {
