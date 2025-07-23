@@ -43,7 +43,7 @@ function ContactDetails(){
                     </button>
 
                     <h1 className="text-3xl text-slate-100 font-bold text-center">
-                    {`Editar Contato: ${idContact}`}
+                    Editar Contato
                     </h1>
 
                 </div>
