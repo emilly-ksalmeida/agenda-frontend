@@ -21,11 +21,7 @@ function App() {
 console.log(list);
 
   function onClickDelete(idContact){
-    const updatedList = list.filter((contact) => {
-      if(contact.id !== idContact){
-        return {...contact};
-      }
-    });
+    const updatedList = list.filter((contact) => contact.id !== idContact ? true:false);
     setList(updatedList);
   }
 
