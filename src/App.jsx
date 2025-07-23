@@ -40,7 +40,6 @@ console.log(list);
       />
 
       <ContactList
-      list={list}
       onClickDelete={onClickDelete}
       />
       
