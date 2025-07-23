@@ -9,13 +9,28 @@ function ContactDetails(){
     const [upLastName, setUpLastName] = useState("");
     const [upEmail, setUpEmail] = useState("");
     const [upPhone, setUpPhone] = useState("");
-    //importar o context aqui
+    
     const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
     //pegar id do contato para usar em função de atualização
-    const idContact = searchParams.get("id");
+    const idContact = Number(searchParams.get("id"));
    
+    function updateContact(idContact){
+        
+        const novalista = list.map((item)=>{
+            if(idContact === item.id){
+                item.firstName = upFirstName;
+                item.lastName = upLastName;
+                item.email = upEmail;
+                item.phone = upPhone;
+                return {...item} 
+            }
+            return {...item} 
+        });
+        setList(novalista);
+       
+    }
 
     return (
        <div className="h-screen w-screen bg-slate-500 p-6">
@@ -63,6 +78,15 @@ function ContactDetails(){
                         onChange={(event)=> setUpPhone(event.target.value)}
                     />
                 </div>
+                <button
+                className="bg-slate-800 text-slate-100 p-2 rounded-md"
+                onClick={()=> {
+                    updateContact(idContact);
+                    navigate(-1);
+                }}
+                >
+                    Salvar
+                </button>
             </div>
        </div>
     )

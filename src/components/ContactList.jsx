@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import AppContext from "../AppContext.js";
 
+function ContactList({ onClickDelete }){
 
-function ContactList({ list, onClickDelete }){
-
+    const [list, setList] = useContext(AppContext);
     const navigate = useNavigate();
 
     function onSeeDetailsClick(contact){
