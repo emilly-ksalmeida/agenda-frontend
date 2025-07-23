@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import AppContext from "./AppContext.js";
 import NavBar from "./components/NavBar";
@@ -10,7 +11,7 @@ function App() {
 
   function onAddContact (firstName, lastName, email, phone){
     const newList = {
-      id: list.length + 1,
+      id: uuidv4(),
       firstName,
       lastName,
       email,

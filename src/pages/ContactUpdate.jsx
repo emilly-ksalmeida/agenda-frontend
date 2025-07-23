@@ -14,7 +14,7 @@ function ContactDetails(){
 
     const [searchParams] = useSearchParams();
     //pegar id do contato para usar em função de atualização
-    const idContact = Number(searchParams.get("id"));
+    const idContact = searchParams.get("id");
    
     function updateContact(idContact){
         
@@ -45,6 +45,7 @@ function ContactDetails(){
                     <h1 className="text-3xl text-slate-100 font-bold text-center">
                     Editar Contato
                     </h1>
+                    <p>{idContact}</p>
 
                 </div>
 
