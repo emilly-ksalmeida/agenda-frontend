@@ -45,7 +45,7 @@ function ContactDetails(){
                     <h1 className="text-3xl text-slate-100 font-bold text-center">
                     Editar Contato
                     </h1>
-                    <p>{idContact}</p>
+                    
 
                 </div>
 
