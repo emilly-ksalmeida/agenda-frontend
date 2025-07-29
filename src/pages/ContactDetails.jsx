@@ -1,16 +1,15 @@
+import { useContext } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import AppContext from "../AppContext";
 
 function ContactDetails(){
-    
+    const [list, setList] = useContext(AppContext);
+
     const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
-    const id = searchParams.get("id");
-    const firstName = searchParams.get("firstName");
-    const lastName = searchParams.get("lastName");
-    const email = searchParams.get("email");
-    const phone = searchParams.get("phone");
-
+    const idSearch = searchParams.get("id");
+    
     return (
        <div className="h-screen w-screen bg-slate-500 p-6">
             <div className="w-[500px] mx-auto space-y-4">
@@ -27,17 +26,28 @@ function ContactDetails(){
 
                 </div>
 
-                <div className="bg-slate-200 p-4 rounded-md">
-                    <p className="text-slate-600">{firstName}</p>
-                    <p className="text-slate-600">{lastName}</p>
-                    <p className="text-slate-600">{email}</p>
-                    <p className="text-slate-600">{phone}</p>
+                <div className="bg-slate-200 p-4 rounded-md items-center">
+                 <ul>
+                     {
+                  list.filter((contact)=> contact.id === idSearch)
+                  .map((contact)=>(
+                    <li key={contact.id} className="space-y-2">
+                    
+                    <p className="bg-slate-300 text-slate-800 p-2 rounded-md">{contact.firstName}</p>
+                    <p className="bg-slate-300 text-slate-800 p-2 rounded-md">{contact.lastName}</p>
+                    <p className="bg-slate-300 text-slate-800 p-2 rounded-md">{contact.email}</p>
+                    <p className="bg-slate-300 text-slate-800 p-2 rounded-md">{contact.phone}</p>
+                    
+                    </li>
+                  ))}
+                 </ul>
+                    
                 </div>
                 <button
                 className="bg-slate-800 text-slate-100 p-2 rounded-md"
                 onClick={()=> {
                     const query = new URLSearchParams();
-                    query.set("id", id);
+                    query.set("id", idSearch);
                     navigate(`/update?${query.toString()}`);
                 }}>
                     Editar
