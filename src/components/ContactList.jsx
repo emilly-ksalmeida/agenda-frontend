@@ -10,10 +10,6 @@ function ContactList({ onClickDelete }){
     function onSeeDetailsClick(contact){
         const query = new URLSearchParams();
         query.set("id", contact.id);
-        query.set("firstName", contact.firstName);
-        query.set("lastName", contact.lastName);
-        query.set("email", contact.email);
-        query.set("phone", contact.phone);
         
         navigate(`/contact-details?${query.toString()}`);
     }
