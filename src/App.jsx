@@ -19,7 +19,7 @@ function App() {
     };
     setList([...list, newList]);
   }
-console.log(list);
+
 
   function onClickDelete(idContact){
     const updatedList = list.filter((contact) => contact.id !== idContact ? true:false);
