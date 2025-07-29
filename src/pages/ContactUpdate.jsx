@@ -66,7 +66,7 @@ function ContactDetails(){
                     />
                     <input
                         type="text"
-                        placeholder={placeholder.lastName}
+                        placeholder={placeholder.lastName || "Sobrenome"}
                         value={upLastName}
                         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
                         onChange={(event)=> setUpLastName(event.target.value)}
@@ -80,7 +80,7 @@ function ContactDetails(){
                     />
                     <input
                         type="number"
-                        placeholder={placeholder.phone}
+                        placeholder={placeholder.phone || "Telefone"}
                         value={upPhone}
                         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
                         onChange={(event)=> setUpPhone(event.target.value)}
