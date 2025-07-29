@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AppContext from "../AppContext.js";
 
@@ -9,12 +9,19 @@ function ContactDetails(){
     const [upLastName, setUpLastName] = useState("");
     const [upEmail, setUpEmail] = useState("");
     const [upPhone, setUpPhone] = useState("");
+
+     const [placeholder, setPlaceholder] = useState({});
     
     const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
     //pegar id do contato para usar em função de atualização
     const idContact = searchParams.get("id");
+
+    useEffect(()=>{
+        const contact = list.filter((item) => item.id === idContact);
+        setPlaceholder(contact[0]);
+    }, []);
    
     function updateContact(idContact){
         
@@ -52,28 +59,28 @@ function ContactDetails(){
                 <div className="bg-slate-200 p-4 rounded-md flex flex-col">
                     <input
                         type="text"
-                        placeholder="Nome"
+                        placeholder={placeholder.firstName}
                         value={upFirstName}
                         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
                         onChange={(event)=> setUpFirstName(event.target.value)}
                     />
                     <input
                         type="text"
-                        placeholder="Sobrenome"
+                        placeholder={placeholder.lastName}
                         value={upLastName}
                         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
                         onChange={(event)=> setUpLastName(event.target.value)}
                     />
                     <input
                         type="email"
-                        placeholder="E-mail"
+                        placeholder={placeholder.email}
                         value={upEmail}
                         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
                         onChange={(event)=> setUpEmail(event.target.value)}
                     />
                     <input
                         type="number"
-                        placeholder="Telefone"
+                        placeholder={placeholder.phone}
                         value={upPhone}
                         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
                         onChange={(event)=> setUpPhone(event.target.value)}
