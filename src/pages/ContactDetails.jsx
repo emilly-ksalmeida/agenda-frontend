@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { UserPen, CornerUpLeft } from "lucide-react";
 import AppContext from "../AppContext";
 
 function ContactDetails(){
@@ -13,11 +14,12 @@ function ContactDetails(){
     return (
        <div className="h-screen w-screen bg-slate-500 p-6">
             <div className="w-[500px] mx-auto space-y-4">
-                <div className="flex justify-center relative mb-6">
+                <div className="flex justify-center relative mb-6 gap-6">
 
                     <button
-                    className="bg-slate-800 text-slate-100 p-2 rounded-md"
-                    onClick={()=> navigate(-1)}>Voltar
+                    className="bg-slate-700 text-slate-100 p-2 rounded-md"
+                    onClick={()=> navigate(-1)}>
+                        <CornerUpLeft />
                     </button>
 
                     <h1 className="text-3xl text-slate-100 font-bold text-center">
@@ -44,12 +46,13 @@ function ContactDetails(){
                     
                 </div>
                 <button
-                className="bg-slate-800 text-slate-100 p-2 rounded-md"
+                className="w-32 flex items-center gap-5 bg-slate-700 text-slate-100 p-2 rounded-md"
                 onClick={()=> {
                     const query = new URLSearchParams();
                     query.set("id", idSearch);
                     navigate(`/update?${query.toString()}`);
                 }}>
+                    <UserPen />
                     Editar
                 </button>
             </div>

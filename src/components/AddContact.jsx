@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { UserPlus } from "lucide-react";
 
 function AddContact({ onAddContact }){
    const [firstName, setFirstName] = useState("");
@@ -8,7 +9,7 @@ function AddContact({ onAddContact }){
 
 
     return (
-        <div className="space-y-4 p-4 bg-slate-200 rounded-md shadow flex flex-col">
+        <div className="space-y-2 p-4 bg-slate-200 rounded-md shadow flex flex-col">
             <h2 className="text-1xl text-slate-600 text-left">Novo Contato:</h2>
             <input
             type="text"
@@ -40,7 +41,7 @@ function AddContact({ onAddContact }){
             />
             
             <button
-            className="bg-slate-500 text-white px-4 py-2 rounded-md font-medium"
+            className="flex items-center justify-between bg-slate-500 text-white px-4 py-2 rounded-md font-medium w-40"
             onClick={()=>{
                 if(!firstName.trim() || !email.trim()){
                     return alert("Preencha pelo menos os campos de Nome e E-mail!");
@@ -52,6 +53,7 @@ function AddContact({ onAddContact }){
                 setPhone("");  
             }}
             >
+                <UserPlus />
                 Adicionar
             </button>
 
