@@ -13,7 +13,7 @@ function ContactDetails(){
     
     return (
        <div className="h-screen w-screen bg-slate-500 p-6">
-            <div className="w-[500px] mx-auto space-y-4">
+            <div className="w-[70%] mx-auto space-y-4">
                 <div className="flex justify-center relative mb-6 gap-6">
 
                     <button
@@ -28,7 +28,7 @@ function ContactDetails(){
 
                 </div>
 
-                <div className="bg-slate-200 p-4 rounded-md items-center">
+                <div className="max-w-[100%] mx-auto bg-slate-200 p-4 rounded-md items-center">
                  <ul>
                      {
                   list.filter((contact)=> contact.id === idSearch)
