@@ -1,36 +1,32 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import AppContext from "../AppContext.js";
 
 function ContactDetails(){
     const [list, setList] = useContext(AppContext);
 
-    const [upFirstName, setUpFirstName] = useState("");
-    const [upLastName, setUpLastName] = useState("");
-    const [upEmail, setUpEmail] = useState("");
-    const [upPhone, setUpPhone] = useState("");
-
-     const [placeholder, setPlaceholder] = useState({});
+    const [upFirstName, setUpFirstName] = useState();
+    const [upLastName, setUpLastName] = useState();
+    const [upEmail, setUpEmail] = useState();
+    const [upPhone, setUpPhone] = useState();
     
     const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
-    //pegar id do contato para usar em função de atualização
+    
     const idContact = searchParams.get("id");
 
-    useEffect(()=>{
-        const contact = list.filter((item) => item.id === idContact);
-        setPlaceholder(contact[0]);
-    }, []);
-   
+    const placeholder = list.filter((item) => item.id === idContact)[0]; 
+
     function updateContact(idContact){
         
         const novalista = list.map((item)=>{
             if(idContact === item.id){
-                item.firstName = upFirstName;
-                item.lastName = upLastName;
-                item.email = upEmail;
-                item.phone = upPhone;
+                item.firstName = upFirstName || placeholder.firstName;
+                item.lastName = upLastName || placeholder.lastName;
+                item.email = upEmail || placeholder.email;
+                item.phone = upPhone || placeholder.phone;
+            
                 return {...item} 
             }
             return {...item} 
@@ -58,29 +54,33 @@ function ContactDetails(){
 
                 <div className="bg-slate-200 p-4 rounded-md flex flex-col">
                     <input
+                        defaultValue={placeholder.firstName}
                         type="text"
-                        placeholder={placeholder.firstName}
+                        placeholder="Nome"
                         value={upFirstName}
                         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
                         onChange={(event)=> setUpFirstName(event.target.value)}
                     />
                     <input
+                        defaultValue={placeholder.lastName}
                         type="text"
-                        placeholder={placeholder.lastName || "Sobrenome"}
+                        placeholder="Sobrenome"
                         value={upLastName}
                         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
                         onChange={(event)=> setUpLastName(event.target.value)}
                     />
                     <input
+                        defaultValue={placeholder.email}
                         type="email"
-                        placeholder={placeholder.email}
+                        placeholder="e-mail"
                         value={upEmail}
                         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
                         onChange={(event)=> setUpEmail(event.target.value)}
                     />
                     <input
+                        defaultValue={placeholder.phone}
                         type="number"
-                        placeholder={placeholder.phone || "Telefone"}
+                        placeholder= "Telefone"
                         value={upPhone}
                         className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
                         onChange={(event)=> setUpPhone(event.target.value)}
