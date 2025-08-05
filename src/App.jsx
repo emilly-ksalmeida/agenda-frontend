@@ -9,17 +9,13 @@ import ContactList from "./components/ContactList";
 function App() {
   const [list, setList] = useContext(AppContext);
 
-  function onAddContact (firstName, lastName, email, phone){
+  function onAddContact (dados){
     const newList = {
       id: uuidv4(),
-      firstName,
-      lastName,
-      email,
-      phone
+      ...dados
     };
     setList([...list, newList]);
   }
-
 
   function onClickDelete(idContact){
     const updatedList = list.filter((contact) => contact.id !== idContact ? true:false);

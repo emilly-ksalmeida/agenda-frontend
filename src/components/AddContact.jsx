@@ -28,7 +28,7 @@ function AddContact({ onAddContact }){
 
 
   function enviar(dados){
-    console.log(dados);
+    onAddContact(dados);
   }
 
     return (
