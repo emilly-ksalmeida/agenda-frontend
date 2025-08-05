@@ -1,62 +1,79 @@
-import { useState } from "react";
+import { useForm, useFieldArray } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { UserPlus } from "lucide-react";
 
-function AddContact({ onAddContact }){
-   const [firstName, setFirstName] = useState("");
-   const [lastName, setLastName] = useState("");
-   const [email, setEmail] = useState("");
-   const [phone, setPhone] = useState("");
+const createContactFormSchema = z.object({
+  
+  firstName: z.string()
+  .nonempty("O nome é obrigatório")
+  ,
+  lastName: z.string(),
+  email: z.string()
+  .toLowerCase()
+  ,
+  phone: z.string()
+});
 
+
+function AddContact({ onAddContact }){
+   
+    const { register, 
+          handleSubmit,
+          control, 
+          formState: { errors }
+        } = useForm({
+          resolver: zodResolver(createContactFormSchema)
+  });
+
+
+  function enviar(dados){
+    console.log(dados);
+  }
 
     return (
         <div className="space-y-2 p-4 bg-slate-200 rounded-md shadow flex flex-col">
             <h2 className="text-1xl text-slate-600 text-left">Novo Contato:</h2>
+            
+            <form
+            className="flex flex-col gap-4 w-full"
+            onSubmit={handleSubmit(enviar)}
+            >
+            
             <input
             type="text"
             placeholder="Nome"
-            value={firstName}
             className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
-            onChange={(event)=> setFirstName(event.target.value)}
+            {...register("firstName")}
             />
+            {errors.firstName && <span className="text-red-500 text-sm">{errors.firstName.message}</span>}
             <input
             type="text"
             placeholder="Sobrenome"
-            value={lastName}
             className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
-            onChange={(event)=> setLastName(event.target.value)}
+            {...register("lastName")}
             />
             <input
             type="email"
             placeholder="E-mail"
-            value={email}
             className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
-            onChange={(event)=> setEmail(event.target.value)}
+            {...register("email")}
             />
             <input
             type="number"
             placeholder="Telefone"
-            value={phone}
             className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
-            onChange={(event)=> setPhone(event.target.value)}
+            {...register("phone")}
             />
             
             <button
             className="flex items-center justify-between bg-slate-500 text-white px-4 py-2 rounded-md font-medium w-40"
-            onClick={()=>{
-                if(!firstName.trim() || !email.trim()){
-                    return alert("Preencha pelo menos os campos de Nome e E-mail!");
-                }
-                onAddContact(firstName, lastName, email, phone);
-                setFirstName("");
-                setLastName("");
-                setEmail("");
-                setPhone("");  
-            }}
+            type="submit" 
             >
                 <UserPlus />
                 Adicionar
             </button>
-
+            </form>
         </div>
     )
 };
