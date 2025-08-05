@@ -13,7 +13,7 @@ const createContactFormSchema = z.object({
   .max(45, {message: "Tamanho máximo de 45 caracteres"})
   ,
   email: z.email({ 
-    message: "Por favor, insira um e-mail válido",
+    message: "O e-mail é obrigatório! Por favor, insira um e-mail válido",
     pattern: /^[\w.!#$%&'*+/=?^`{|}~-]+@[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?(?:\.[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?)+$/i
     })
   ,
@@ -78,10 +78,10 @@ function AddContact({ onAddContact }){
             
             {errors.phone && <span className="text-red-500 text-sm">{errors.phone.message}</span>}
             <button
-            className="flex items-center justify-between bg-slate-500 text-white px-4 py-2 rounded-md font-medium w-40"
+            className="flex items-center justify-between bg-slate-500 text-white px-4 py-2 rounded-md font-medium w-32"
             type="submit" 
             >
-                <UserPlus />
+                <UserPlus size={20}/>
                 Adicionar
             </button>
             </form>
