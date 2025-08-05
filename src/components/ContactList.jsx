@@ -20,14 +20,14 @@ function ContactList({ onClickDelete }){
             <h2 className="text-1xl text-slate-600 text-left">Lista de Contatos</h2>
             <ul className="space-y-2">
                 {list.map((contact)=>(
-                    <li key={contact.id} className="flex justify-between">
+                    <li key={contact.id} className="flex justify-between w-full">
                     
-                    <div className="flex w-4/5 gap-2">
+                    <div className="w-3/4 flex gap-2">
                     <p className="bg-slate-500 text-white p-2 rounded-md min-w-[45%] w-auto">{contact.firstName}</p>
                     <p className="bg-slate-500 text-white p-2 rounded-md min-w-[45%] w-auto">{contact.email}</p>
                     </div>
 
-                    <div className="w-1/5 flex gap-4">
+                    <div className="w-1/4 flex gap-2">
                         <button className="bg-slate-500 text-white p-2 rounded-md"
                         onClick={() => onSeeDetailsClick(contact)}
                         >
