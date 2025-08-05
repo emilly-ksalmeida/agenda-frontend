@@ -6,15 +6,19 @@ import { UserPlus } from "lucide-react";
 const createContactFormSchema = z.object({
   
   firstName: z.string()
+  .max(45, {message: "Tamanho máximo de 45 caracteres"})
   .nonempty("O nome é obrigatório")
   ,
-  lastName: z.string(),
+  lastName: z.string()
+  .max(45, {message: "Tamanho máximo de 45 caracteres"})
+  ,
   email: z.email({ 
     message: "Por favor, insira um e-mail válido",
     pattern: /^[\w.!#$%&'*+/=?^`{|}~-]+@[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?(?:\.[a-z\d](?:[a-z\d-]{0,61}[a-z\d])?)+$/i
     })
   ,
   phone: z.string()
+  .max(25, {message: "Tamanho máximo de 25 caracteres"})
 });
 
 
@@ -56,6 +60,7 @@ function AddContact({ onAddContact }){
             className="border border-slate-300 outline-slate-400 px-4 py-2 rounded-md"
             {...register("lastName")}
             />
+            {errors.lastName && <span className="text-red-500 text-sm">{errors.lastName.message}</span>}
             <input
             type="email"
             placeholder="E-mail"
